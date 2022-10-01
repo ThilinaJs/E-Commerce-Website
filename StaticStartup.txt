@@ -1,2 +1,2 @@
 Simple E Commerce Website
-Group - StaticStartup
+Group-StaticStartup
