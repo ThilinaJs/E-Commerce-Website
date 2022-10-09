@@ -1,7 +1,7 @@
 from itertools import product
 from multiprocessing import context
-from django.shortcuts import render
-from django.views.generic import TemplateView
+from django.shortcuts import render, redirect
+from django.views.generic import View,TemplateView
 from ecomapp.models import Cart, CartProduct, Category, Product
 
 # Create your views here.
@@ -74,6 +74,9 @@ class AddToCartView(TemplateView):
             cart_obj.save()
 
         return context
+
+
+
 
 class MyCartView(TemplateView):
     template_name = "mycart.html"
