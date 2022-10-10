@@ -38,6 +38,9 @@
                     <tr>
                         <th colspan="4" class="text-right">Total</th>
                         <th>Rs. {{cart.total}}</th>
+                        {% if cart.cartproduct_set.all %}
+                        <th><a href="{% url 'ecomapp:emptycart'%}">Empty Cart</a></th>
+                        {%endif%}
                     </tr>
                 </tbody>
             </table>
