@@ -129,6 +129,7 @@ class CheckoutView(CreateView):
             form.instance.discount = 0
             form.instance.total = cart_obj.total
             form.instance.order_status = "Order Received"
+            del self.request.session['cart_id']
         else:
             return redirect('ecomapp:home')
         return super().form_valid(form)
