@@ -102,6 +102,17 @@ class MyCartView(TemplateView):
 class CheckoutView(TemplateView):
     template_name = "checkout.html"
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        cart_id= self.request.session.get("cart_id", None)
+        if cart_id:
+            cart_obj = Cart.objects.get(id=cart_id)
+
+        else:
+            cart_obj = None
+        context['cart']=cart_obj
+        return context
+
 
 class AboutView(TemplateView):
     template_name = "about.html"
