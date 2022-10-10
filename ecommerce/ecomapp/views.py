@@ -99,7 +99,8 @@ class MyCartView(TemplateView):
             cart = None
         context['cart']=cart
         return context
-
+class CheckoutView(TemplateView):
+    template_name = "checkout.html"
 
 
 class AboutView(TemplateView):
