@@ -1,8 +1,13 @@
 from itertools import product
 from multiprocessing import context
+from django import forms
 from django.shortcuts import render, redirect
-from django.views.generic import View,TemplateView
+from django.urls import reverse_lazy
+from django.views.generic import View,TemplateView, CreateView
+from ecomapp.forms import CheckoutForm
 from ecomapp.models import Cart, CartProduct, Category, Product
+from .forms import CheckoutForm
+from .models import *
 
 # Create your views here.
 class HomeView(TemplateView):
@@ -99,19 +104,34 @@ class MyCartView(TemplateView):
             cart = None
         context['cart']=cart
         return context
-class CheckoutView(TemplateView):
+class CheckoutView(CreateView):
     template_name = "checkout.html"
-
+    form_class = CheckoutForm 
+    success_url = reverse_lazy('ecomapp:home')
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         cart_id= self.request.session.get("cart_id", None)
         if cart_id:
             cart_obj = Cart.objects.get(id=cart_id)
-
+        
         else:
             cart_obj = None
         context['cart']=cart_obj
-        return context
+        return context 
+
+    def form_valid(self, form):
+        cart_id = self.request.session.get('cart_id')
+
+        if cart_id:
+            cart_obj = Cart.objects.get(id = cart_id)
+            form.instance.cart = cart_obj
+            form.instance.subtotal = cart_obj.total
+            form.instance.discount = 0
+            form.instance.total = cart_obj.total
+            form.instance.order_status = "Order Received"
+        else:
+            return redirect('ecomapp:home')
+        return super().form_valid(form)
 
 
 class AboutView(TemplateView):
