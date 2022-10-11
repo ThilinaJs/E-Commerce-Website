@@ -71,7 +71,7 @@
                 <li><a href="{% url 'ecomapp:mycart' %}">View Cart</a></li> 
                 {% if request.user.customer %}
                 Welcome {{request.user.username}}!
-                <li><a href="{% url 'ecomapp:customerlogout' %}">Logout</a></li>
+                <li><a class="ctb"href="{% url 'ecomapp:customerlogout' %}"><button>Logout</button></a></li>
                 {%else%}
                 <li><a href="{% url 'ecomapp:customerregistration' %}">Register</a></li> 
                 <li><a class="cta" href="{% url 'ecomapp:customerlogin' %}"><button>Login</button></a></li>
