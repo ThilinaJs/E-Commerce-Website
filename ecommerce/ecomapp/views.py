@@ -3,11 +3,12 @@ from multiprocessing import context
 from django import forms
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
-from django.views.generic import View,TemplateView, CreateView
+from django.views.generic import View,TemplateView, CreateView,FormView
 from ecomapp.forms import CheckoutForm
 from ecomapp.models import Cart, CartProduct, Category, Product
 from .forms import *
 from .models import *
+from django.contrib.auth import authenticate, login, logout
 
 # Create your views here.
 class HomeView(TemplateView):
@@ -136,6 +137,36 @@ class CustomerRegistrationView(CreateView):
     template_name = "customerregistration.html"
     form_class = CustomerRegistrationForm
     success_url = reverse_lazy('ecomapp:home')
+
+    def form_valid(self, form):
+        username = form.cleaned_data.get("username")
+        password = form.cleaned_data.get("password")
+        email = form.cleaned_data.get("email")
+        user = User.objects.create_user(username,"",password)
+        form.instance.user=user
+        login(self.request, user)
+
+        return super().form_valid(form)
+class CustomerLogoutView(View):
+    def get(self, request):
+        logout(request)
+        return redirect('ecomapp:home')
+
+class CustomerLoginView(FormView):
+    template_name = "customerlogin.html"
+    form_class = CustomerLoginForm
+    success_url = reverse_lazy('ecomapp:home')
+
+    def form_valid(self,form):
+        uname = form.cleaned_data.get('username')
+        pword = form.cleaned_data.get('password')
+        usr = authenticate(username=uname, password=pword)
+        if usr is not None and usr.customer:
+            login(self.request, usr)
+        else:
+            return render(self.request,self.template_name,{"form":self.form_class, "error":"Invalid Credentials"})
+        return super.form_valid(form)
+
 
 
 class AboutView(TemplateView):

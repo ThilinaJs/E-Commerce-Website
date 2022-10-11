@@ -14,7 +14,13 @@
         <a href="{% url 'ecomapp:contact' %}">Contact Us</a> |
         <a href="{% url 'ecomapp:allproducts' %}">Categories</a> |
         <a href="{% url 'ecomapp:mycart' %}">View Cart</a> |
-        <a href="{% url 'ecomapp:customerregistration' %}">Customer Registration</a>
+        {% if request.user.customer %}
+        Welcome {{request.user.username}}!
+        <a href="{% url 'ecomapp:customerlogout' %}">Logout</a>
+        {%else%}
+        <a href="{% url 'ecomapp:customerregistration' %}">Register</a> |
+        <a href="{% url 'ecomapp:customerlogin' %}">Login</a>
+        {%endif%}
     </div>
     <hr>
 
