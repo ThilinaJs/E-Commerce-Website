@@ -7,30 +7,57 @@
     <title>{% block title %}{% endblock %}</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
     <style>
+        @import url('https://fonts.googleapis.com/css?family=Montserrat:500');
         body {
-            background-color: rgb(247, 247, 247);
+            background-color: rgb(255, 255, 255);
             margin: 0 auto;
             font-size: 1.2rem;
             font-family: sans-serif;
         }
+
+        li, a, button {
+            font-family: "Montserrat", sans-serif;
+            font-weight: 500;
+            font-size: 16px;
+            color: #000000;
+            text-decoration: none;
+        }
+        header{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 10%;
+        }
+        .logo{
+            cursor: pointer;
+        }
+        .nav__links{
+            list-style: none;
+        }
+        
     </style>
 </head>
 <body>
-    <div class="container">
-        <a href="{% url 'ecomapp:home' %} ">Home</a> |
-        <a href="{% url 'ecomapp:about' %}">About Us</a> |
-        <a href="{% url 'ecomapp:contact' %}">Contact Us</a> |
-        <a href="{% url 'ecomapp:allproducts' %}">Categories</a> |
-        <a href="{% url 'ecomapp:mycart' %}">View Cart</a> |
-        {% if request.user.customer %}
-        Welcome {{request.user.username}}!
-        <a href="{% url 'ecomapp:customerlogout' %}">Logout</a>
-        {%else%}
-        <a href="{% url 'ecomapp:customerregistration' %}">Register</a> |
-        <a href="{% url 'ecomapp:customerlogin' %}">Login</a>
-        {%endif%}
-    </div>
-    <hr>
+    <header class="container">
+        <img class="logo" src="media/Logo.png" alt="logo">
+        <nav>
+            <ul class="nav__links">
+                <li><a href="{% url 'ecomapp:home' %} ">Home</a></li> 
+                <li><a href="{% url 'ecomapp:about' %}">About Us</a></li> 
+                <li><a href="{% url 'ecomapp:contact' %}">Contact Us</a></li>
+                <li><a href="{% url 'ecomapp:allproducts' %}">Categories</a></li> 
+                <li><a href="{% url 'ecomapp:mycart' %}">View Cart</a></li> 
+                {% if request.user.customer %}
+                Welcome {{request.user.username}}!
+                <li><a href="{% url 'ecomapp:customerlogout' %}">Logout</a></li>
+                {%else%}
+                <li><a href="{% url 'ecomapp:customerregistration' %}">Register</a></li> 
+                <li><a class="cta" href="{% url 'ecomapp:customerlogin' %}"><button>Login</button></a></li>
+                {%endif%}
+            </ul>
+        </nav>
+    </header>
+    
 
     {% block content %}
     {% endblock %}
