@@ -165,7 +165,7 @@ class CustomerLoginView(FormView):
             login(self.request, usr)
         else:
             return render(self.request,self.template_name,{"form":self.form_class, "error":"Invalid Credentials"})
-        return super.form_valid(form)
+        return super().form_valid(form)
 
 
 
