@@ -6,7 +6,7 @@ from django.urls import reverse_lazy
 from django.views.generic import View,TemplateView, CreateView
 from ecomapp.forms import CheckoutForm
 from ecomapp.models import Cart, CartProduct, Category, Product
-from .forms import CheckoutForm
+from .forms import *
 from .models import *
 
 # Create your views here.
