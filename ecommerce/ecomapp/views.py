@@ -132,6 +132,10 @@ class CheckoutView(CreateView):
         else:
             return redirect('ecomapp:home')
         return super().form_valid(form)
+class CustomerRegistrationView(CreateView):
+    template_name = "customerregistration.html"
+    form_class = CustomerRegistrationForm
+    success_url = reverse_lazy('ecomapp:home')
 
 
 class AboutView(TemplateView):
