@@ -10,6 +10,7 @@
         outline: none;
         text-decoration: none;
         padding: 2px 1px 0;
+        font-size:22px;
     }
     a.links:hover {
         color: #000000;
@@ -17,12 +18,21 @@
     div.m-4 {
         width: 320px;
         padding: 10px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         border: 2px solid rgb(255, 255, 255);
         border-radius: 15px;
         margin: 0;
         background-color: rgb(255, 255, 255);
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    } 
+    }
+    .img1{
+        
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+
+
+    }
 </style>
 
 
@@ -34,8 +44,8 @@
         {% for p in cat.product_set.all %}
         <div class="col-md-4">
             <div class="m-4">
-                <h4><a class = "links"href="{% url 'ecomapp:productdetail' p.slug %}">{{p.title}}</a></h3>
-                <img src="{{p.image.url}}" alt="" width="200">
+                <h4><a class = "links"href="{% url 'ecomapp:productdetail' p.slug %}"><b>{{p.title}}</b></a></h3>
+                <img class="img1"src="{{p.image.url}}" alt="" width="200">
                 <p class="mt-3">Price: <strike>Rs. {{p.marked_price}}</strike> Rs. {{p.selling_price}}</p>
                 <a href="{% url 'ecomapp:addtocart' p.id %}" class="btn btn-primary">Add to Cart</a>
 
