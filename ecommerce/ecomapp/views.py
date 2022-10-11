@@ -113,7 +113,6 @@ class CheckoutView(CreateView):
         cart_id= self.request.session.get("cart_id", None)
         if cart_id:
             cart_obj = Cart.objects.get(id=cart_id)
-        
         else:
             cart_obj = None
         context['cart']=cart_obj
