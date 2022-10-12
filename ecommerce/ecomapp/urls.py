@@ -1,6 +1,6 @@
 from django.urls import path
 from .views import *
-
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 app_name = "ecomapp"
 urlpatterns = [
     path("", HomeView.as_view(),name="home"),
@@ -17,3 +17,5 @@ urlpatterns = [
     path("login/",CustomerLoginView.as_view(),name="customerlogin"),
 
 ]
+
+urlpatterns += staticfiles_urlpatterns()
