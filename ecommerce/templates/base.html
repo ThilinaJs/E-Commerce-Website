@@ -18,8 +18,8 @@
         li, a, button {
             font-family: "Montserrat", sans-serif;
             font-weight: 500;
-            font-size: 20px;
-            color: #000000;
+            font-size: 19px;
+            color: #040622;
             text-decoration: none;
         }
         header{
@@ -33,16 +33,41 @@
         }
         .nav__links{
             list-style: none;
+            
         }
         .nav__links li{
             display: inline-block;
             padding: 0px 15px;
+            
         }
         .nav__links li a {
             transition: all 0.3s ease 0s;
+            
+        }
+        .nav__links li.aa{
+            border: solid rgb(103, 199, 255) 2px;
+            padding: 5px 15px;
+            border-radius: 50px;
+            transition: all 0.5s ease 0s;
+        }
+        .nav__links li.aa:hover{
+            background-color: rgba(98, 215, 245, 0.8);
+            
+        }
+        .nav__links li.ab:hover{
+            background-color: rgba(58, 203, 240, 0.8);
+            
+        }
+
+
+        .nav__links li.ab{
+            border: solid rgb(103, 199, 255) 2px;
+            padding: 5px 15px;
+            border-radius: 50px;
+            transition: all 0.5s ease 0s;
         }
         .nav__links li a:hover{
-            color: #6dd3ec;
+            color: #202020;
         }
         button {
             padding: 9px 25px;
@@ -64,28 +89,26 @@
 </head>
 <body>
     <header class="container">
-        <img class="logo" src='media/Logo.png' alt="logo">
+        {% load static %}<a href="{% url 'ecomapp:home' %}"><img class="logo" src="{% static "image/Logo.jpg" %}" alt="home"/></a>
         <nav>
             <ul class="nav__links">
-                <li><a href="{% url 'ecomapp:home' %} ">Home</a></li> 
-                <li><a href="{% url 'ecomapp:about' %}">About Us</a></li> 
-                <li><a href="{% url 'ecomapp:contact' %}">Contact Us</a></li>
-                <li><a href="{% url 'ecomapp:allproducts' %}">Categories</a></li> 
-                <li><a href="{% url 'ecomapp:mycart' %}">View Cart</a></li> 
+                <li class="aa"><a href="{% url 'ecomapp:home' %} "><b>Home</b></a></li> 
+                <li class="aa"><a href="{% url 'ecomapp:about' %}"><b>About Us</b></a></li> 
+                <li class="aa"><a href="{% url 'ecomapp:contact' %}"><b>Contact Us</b></a></li>
+                <li class="aa"><a href="{% url 'ecomapp:allproducts' %}"><b>Categories</b></a></li> 
+                <li class="aa"><a href="{% url 'ecomapp:mycart' %}"><b>View Cart</b></a></li> 
                 {% if request.user.customer %}
                 Welcome {{request.user.username}}!
                 <li><a class="ctb"href="{% url 'ecomapp:customerlogout' %}"><button>Logout</button></a></li>
                 {%else%}
-                <li><a href="{% url 'ecomapp:customerregistration' %}">Register</a></li> 
-                <li><a class="cta" href="{% url 'ecomapp:customerlogin' %}"><button>Login</button></a></li>
+                <li class="ab"><a href="{% url 'ecomapp:customerregistration' %}"><b>Register</b></a></li> 
+                <li><a class="cta" href="{% url 'ecomapp:customerlogin' %}"><button><b>Login</b></button></a></li>
                 {%endif%}
             </ul>
         
         </nav>
         
     </header>
-    
-    
 
     {% block content %}
     {% endblock %}
