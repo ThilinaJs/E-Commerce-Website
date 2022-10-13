@@ -3,6 +3,82 @@
 {% block title %}Checkout{%endblock%}
 
 {% block content%}
+
+<style>
+        .col-md-6{
+        border:1px solid rgb(0, 195, 255);
+        padding: 20px 10px 10px 10px;
+        border-radius: 0px;
+        
+        margin-bottom: 40px;
+        margin-top: 35px;
+        
+    }
+    form .btn-info {
+        outline: none;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        margin: 0 auto;
+        padding: 0.9rem 2.5rem;
+        text-align: center;
+        background-color: #0093b8;
+        color: #fff;
+        border-radius: 50px;
+        box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+        font-size: 17px;
+    }
+    .btn-info {
+        outline: none;
+        border: none;
+        cursor: pointer;
+        
+        margin: 0 auto;
+        padding: 0.9rem 2.5rem;
+        text-align: center;
+        background-color: #152a57;
+        color: #fff;
+        border-radius: 50px;
+        box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+        font-size: 17px;
+    }
+    
+    h2,.sss{
+        display: flex;
+        justify-content: center;
+        margin-bottom: 18px;
+        
+        
+    }
+    .sss{
+        margin-top: 15px;
+        
+    }
+    .fcontent{
+        display: flex;
+        justify-content: center;
+        
+    }
+    form input {
+        font-family: inherit;
+        width: 120%;
+        outline: none;
+        background-color: rgb(187, 220, 255);
+        border-radius: 4px;
+        border: none;
+        display: flex;
+        padding: 0.9rem 0.7rem;
+        box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+        font-size: 20px;
+        color: #4A4A4A;
+        text-indent: 40px;
+}
+    .content23{
+        margin-left: 30px;
+        width: 70%;
+    }
+</style>
 <div class="container">
     <div class="row">
         <div class="col-md-6">
@@ -40,8 +116,10 @@
         <div class="col-md-6">
             <h3>Checkout Form</h3>
             <form action="" method="POST">
+                <div class="content23">
                 {% csrf_token %} 
-                {{form.as_p}}
+                <div class="form-field">{{form.as_p}}</div>
+                </div>
                 <button class="btn btn-info">Place Order</button>
             </form>
         </div>
