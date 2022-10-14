@@ -75,15 +75,15 @@
                         {% csrf_token %}
                         <div class="form-field">{{form.as_p}}</div>
                     </div>
-                
                     <button class="btn btn-primary">Register as a Customer</button>
-
-
                 </form>
             </div>
             <p class="sss">Already have an account?<a href="{% url 'ecomapp:customerlogin'%}"> Login here</a></p>
         </div>
     </div>
 </div>
+
+
+
 
 {% endblock %}
