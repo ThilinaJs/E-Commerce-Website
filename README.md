@@ -1,2 +1,2 @@
-Group Name - StaticStartup
-Project - Simple E-Commerce System
+Project - E-Commerce System
+Using Django Framework
