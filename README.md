@@ -1,2 +1,2 @@
 Project - E-Commerce System
-Using Django Framework
+Using Django Framework, HTML, CSS, Python
